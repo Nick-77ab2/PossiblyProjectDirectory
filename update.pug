@@ -1,0 +1,32 @@
+html
+  body
+    p #{message}
+    h2= 'User information'
+    form(method='POST' action='/update')
+      input(type='hidden' id='oldname' name='oldname' value=oldname)
+      input(type='hidden' id='oldusername' name='oldusername' value=oldusername)
+      input(type='hidden' id='oldpassword' name='oldpassword' value=oldpassword)
+      input(type='hidden' id='oldpasswordConfirm' name='oldpasswordConfirm' value=oldpasswordConfirm)
+      input(type='hidden' id='oldscore' name='oldscore' value=oldscore)
+      label(for='name') Name:
+      br
+      input(type='text', placeholder='What is your new name' name='name' value=name)
+      br
+      label(for='username') Username:
+      br
+      input(type='text', placeholder='What is your new username' name='username' value=username)
+      br
+      label(for='password') Password:
+      br
+      input(type='password', placeholder='What is your new Password' name='password' value=password)
+      br
+      label(for='passwordConfirm') Password Confirm:
+      br
+      input(type='password', placeholder='What is your new Password Confirm' name='passwordConfirm' value=passwordConfirm)
+      br
+      label(for='score') Score:
+      br
+      input(type='number', placeholder='New Score' name='score' value=score)
+      br
+      button(type='submit' formaction="/update") Update
+      button(type='submit' formaction="/delete") Delete
