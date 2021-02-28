@@ -18,7 +18,7 @@ app.get('/', function(req, res) {
 });
 
 app.get('/create', function(req, res) {
-  res.sendFile('/create.html', { root: '.'});
+  res.sendFile('/createUser.html', { root: '.'});
 });
 
 app.post('/create', function(req, res, next) {
@@ -45,7 +45,7 @@ app.post('/create', function(req, res, next) {
 });
 
 app.get('/get', function (req, res) {
-  res.sendFile('/get.html', {root:'.'});
+  res.sendFile('/getUser.html', {root:'.'});
 });
 
 app.get('/get-client', function (req, res) {
