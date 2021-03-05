@@ -87,7 +87,27 @@ app.get('/get-client', function (req, res) {
             });
         });
     });
-})
+});
+app.get('/login', function(req, res){
+    let user = client.db("spelling_bee").collection("users").findOne(
+          {username: req.query.username}, function(err, result) {
+            if(err){
+              return res.status(401).send("Incorrect account info.");
+            }
+          });
+    bcrypt
+    .compare(req.body.password, user.password)
+    .then(function(isSame){
+        if(isSame)
+          res.status(200).send();
+        else
+           res.status(401).send("Incorrect account info.");
+    }) 
+    .catch(function (error) {
+        console.log(error);
+        res.status(500).send("The server had an issue, please try again.");
+    });
+});
 
 /*app.post('/update', function(req, res) {
   client.connect(err => {
@@ -96,10 +116,11 @@ app.get('/get-client', function (req, res) {
           {username: req.query.username}, function(err, result) {
             return res.status(401).send("");
           });
-    if(bcrypt.compare(req.body.password, user.password))
+    if(bcrypt.compare(req.body.password, user.password)){
     let query = { 
       username: req.body.oldusername,
     };
+    }
     console.log(query);
     let newvalues = { $set: {
       name: req.body.name,
