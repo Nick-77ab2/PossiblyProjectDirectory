@@ -13,7 +13,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-
 const saltRounds = 10;
 app.get('/', function(req, res) {
   res.status(200).sendFile(__dirname + "\\public_html\\index.html\\");
