@@ -3,8 +3,9 @@ right now only for single player part, websocket/ multiplayer will be resolved n
 
 */
 
-express = require("express");
-axios = require("axios");
+const express = require("express");
+const axios = require("axios");
+const websocket = require("ws"); 
 
 app = express();
 
