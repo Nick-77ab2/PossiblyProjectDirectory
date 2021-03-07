@@ -26,7 +26,6 @@ app.get('/create', function(req, res) {
 app.post('/create', function(req, res, next) {
   client.connect(error => {
     const users = client.db("spelling_bee").collection("users");
-    //TODO: hash password?
     if((!req.body.hasOwnProperty("username")) || 
 	   (!req.body.hasOwnProperty("password")) ||
        (!req.body.hasOwnProperty("confirmPassword")) ||
@@ -53,7 +52,7 @@ app.post('/create', function(req, res, next) {
 
     users.insertOne(user, function(err, res) {
       // TODO:Fix error, causes server to crash in all scenarios.
-      //TODO: CLOSE CLIENT AFTER ALL CONNECTS
+      // TODO: CLOSE CLIENT AFTER ALL CONNECTS
       if(err) throw err;
       console.log("1 Row user has been created.");
     });
@@ -70,6 +69,7 @@ app.get('/get-client', function (req, res) {
     client.connect(err => {
         client.db("spelling_bee").collection("users").findOne(
           {username: req.query.username}, function(err, result) {
+            //TODO: fix this? or maybe remove it. Not sure if it's useful as of now. that uncludes the app.gets for /get and /create
           if (err) throw err;
 
           res.render('update', 
